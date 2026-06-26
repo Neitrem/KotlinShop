@@ -1,9 +1,8 @@
-package com.uilover.project2142.Helper
+package com.example.myapplication1.helper
 
 import android.content.Context
 import android.widget.Toast
-import com.example.myapplication1.Domain.FoodModel
-import com.example.myapplication1.Helper.TinyDB
+import com.example.myapplication1.domain.FoodModel
 import com.uilover.project2142.Model.ChangeNumberItemsListener
 
 
@@ -12,9 +11,9 @@ class ManagmentCart(val context: Context) {
     private val tinyDB = TinyDB(context)
 
     fun insertItem(item: FoodModel) {
-        var listFood = getListCart()
-        val existAlready = listFood.any { it.Title == item.Title }
-        val index = listFood.indexOfFirst { it.Title == item.Title }
+        val listFood = getListCart()
+        val existAlready = listFood.any { it.title == item.title }
+        val index = listFood.indexOfFirst { it.title == item.title }
 
         if (existAlready) {
             listFood[index].numberInCart = item.numberInCart
@@ -51,7 +50,7 @@ class ManagmentCart(val context: Context) {
         val listFood = getListCart()
         var fee = 0.0
         for (item in listFood) {
-            fee += item.Price * item.numberInCart
+            fee += item.price * item.numberInCart
         }
         return fee
     }
